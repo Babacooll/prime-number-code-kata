@@ -19,18 +19,19 @@ class NumberHelper
 	public function getAllSubNumbersinNumber(float $number): array
 	{
 		$number = number_format($number, 0, '', '');
-		$subs   = [$number];
-		$length = strlen($number);
+
+		$length = mb_strlen($number);
+		$subs   = [];
 
 		for ($i = 0; $i < $length; $i++)
 		{
-			for ($j = $i; $j < $length; $j++)
+			for ($j = 1; $j <= $length; $j++)
 			{
-				$subs[] = substr($number, $i, $j);
+				$subs[] = mb_substr($number, $i, $j);
 			}
 		}
 
-		return array_filter(array_unique($subs));
+		return array_unique($subs);
 	}
 
 	/**

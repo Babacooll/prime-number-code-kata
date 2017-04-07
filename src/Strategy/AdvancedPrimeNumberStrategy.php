@@ -16,6 +16,11 @@ class AdvancedPrimeNumberStrategy implements PrimeNumberStrategyInterface
 	 */
 	public function isPrimeNumber(float $number): bool
 	{
+		if ($number == 1 || $number == 2)
+		{
+			return false;
+		}
+
 		if ($number % 2 == 0)
 		{
 			return false;
