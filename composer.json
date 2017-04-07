@@ -1,0 +1,15 @@
+{
+    "name": "michael.garrez/optimus-prime",
+    "authors": [
+        {
+            "name": "Michael Garrez",
+            "email": "michael.garrez@doclerholding.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4" : {
+            "OptimusPrime\\": "src/"
+        }
+    }
+}
