@@ -3,7 +3,7 @@
 namespace OptimusPrime\Strategy;
 
 /**
- * Class ProbabilisticPrimeNumberStrategy
+ * Class AdvancedPrimeNumberStrategy
  *
  * @package OptimusPrime\Strategy
  */

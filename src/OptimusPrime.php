@@ -20,29 +20,23 @@ class OptimusPrime
 	private $numberHelper;
 
 	/**
-	 * @var PrimeNumberStrategyInterface
-	 */
-	private $primeNumberStrategy;
-
-	/**
 	 * OptimusPrime constructor.
-	 *
-	 * @param PrimeNumberStrategyInterface|null $primeNumberStrategy
 	 */
-	public function __construct(PrimeNumberStrategyInterface $primeNumberStrategy = null)
+	public function __construct()
 	{
-		$this->primeNumberStrategy = $primeNumberStrategy ?: new BasicPrimeNumberStrategy();
-		$this->numberHelper        = new NumberHelper();
+		$this->numberHelper = new NumberHelper();
 	}
 
 	/**
-	 * @param mixed $number
+	 * @param mixed                             $number
+	 * @param PrimeNumberStrategyInterface|null $primeNumberStrategy
 	 *
 	 * @return Generator
 	 */
-	public function getPrimeNumbersInNumber($number): Generator
+	public function getPrimeNumbersInNumber($number, PrimeNumberStrategyInterface $primeNumberStrategy = null): Generator
 	{
-		$number = $this->numberHelper->convertToFloatNumber($number);
+		$primeNumberStrategy = $primeNumberStrategy ?: new BasicPrimeNumberStrategy();
+		$number              = $this->numberHelper->convertToFloatNumber($number);
 
 		$subNumbers = $this->numberHelper->getAllSubNumbersinNumber($number);
 
@@ -50,7 +44,7 @@ class OptimusPrime
 
 		foreach ($subNumbers as $subNumber)
 		{
-			if ($this->primeNumberStrategy->isPrimeNumber($subNumber))
+			if ($primeNumberStrategy->isPrimeNumber($subNumber))
 			{
 				yield $subNumber;
 			}
@@ -58,13 +52,14 @@ class OptimusPrime
 	}
 
 	/**
-	 * @param mixed $number
+	 * @param mixed                             $number
+	 * @param PrimeNumberStrategyInterface|null $primeNumberStrategy
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getHighestPrimeNumberInNumber($number): ?int
+	public function getHighestPrimeNumberInNumber($number, PrimeNumberStrategyInterface $primeNumberStrategy = null): ?int
 	{
-		foreach ($this->getPrimeNumbersInNumber($number) as $primeNumber)
+		foreach ($this->getPrimeNumbersInNumber($number, $primeNumberStrategy) as $primeNumber)
 		{
 			return $primeNumber;
 		}

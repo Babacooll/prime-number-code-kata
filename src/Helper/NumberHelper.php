@@ -19,7 +19,7 @@ class NumberHelper
 	public function getAllSubNumbersinNumber(float $number): array
 	{
 		$number = number_format($number, 0, '', '');
-		$subs   = [];
+		$subs   = [$number];
 		$length = strlen($number);
 
 		for ($i = 0; $i < $length; $i++)
